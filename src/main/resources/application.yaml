@@ -5,6 +5,7 @@ spring:
     redis:
       host: ${SPRING_DATA_REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
 
 nasa:
   horizons:
@@ -13,4 +14,4 @@ nasa:
     interval: ${NASA_SCHEDULER_INTERVAL:30000}
 
 server:
-  port: ${SERVER_PORT:8080} 
+  port: ${SERVER_PORT:8080}
