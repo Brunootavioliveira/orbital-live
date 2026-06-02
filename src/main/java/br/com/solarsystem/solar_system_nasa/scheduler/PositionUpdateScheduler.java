@@ -20,9 +20,9 @@ public class PositionUpdateScheduler {
     private final SolarSystemWebSocket solarSystemWebSocket;
 
     @Value("${nasa.scheduler.interval}")
-    private Long internal;
+    private Long interval;
 
-    @Scheduled(fixedRateString = "${nasa.scheduler.internal}")
+    @Scheduled(fixedRateString = "${nasa.scheduler.interval}")
     public void updatePositions() {
         log.info("Scheduler disparado — buscando posições de todos os planetas");
 
