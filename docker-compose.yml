@@ -1,0 +1,30 @@
+services:
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+
+  app:
+    build: .
+    container_name: solar-system-nasa
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=${REDIS_PORT}
+      - SERVER_PORT=${SERVER_PORT}
+      - NASA_HORIZONS_URL=${NASA_HORIZONS_URL}
+      - NASA_SCHEDULER_INTERVAL=${NASA_SCHEDULER_INTERVAL}
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+volumes:
+  redis_data:
