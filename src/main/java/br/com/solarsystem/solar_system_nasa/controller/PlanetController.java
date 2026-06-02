@@ -28,7 +28,7 @@ public class PlanetController {
         return ResponseEntity.ok(positions);
     }
 
-    @GetMapping
+    @GetMapping("/{planetName}")
     public ResponseEntity<PlanetPosition> getPosition(@PathVariable String planetName) {
         log.info("Requisição recebida — buscando posição de {}", planetName);
 
