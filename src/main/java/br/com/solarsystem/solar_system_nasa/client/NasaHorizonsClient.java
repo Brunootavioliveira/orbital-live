@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+
 @Slf4j
 @Component
 public class NasaHorizonsClient {
@@ -26,14 +29,17 @@ public class NasaHorizonsClient {
     }
 
     private String buildUrl(Planet planet) {
+        String today = LocalDate.now(ZoneOffset.UTC).toString();
+        String tomorrow = LocalDate.now(ZoneOffset.UTC).plusDays(1).toString();
+
         return "?format=json"
                 + "&COMMAND=" + planet.getNasaId()
                 + "&OBJ_DATA=NO"
                 + "&MAKE_EPHEM=YES"
                 + "&EPHEM_TYPE=VECTORS"
                 + "&CENTER=500@10"
-                + "&START_TIME=2024-01-01"
-                + "&STOP_TIME=2024-01-02"      
+                + "&START_TIME=" + today
+                + "&STOP_TIME=" + tomorrow
                 + "&STEP_SIZE=1d";
     }
 }

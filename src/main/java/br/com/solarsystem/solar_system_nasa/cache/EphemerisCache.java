@@ -45,6 +45,6 @@ public class EphemerisCache {
     }
 
     public String buildKey(Planet planet){
-        return KEY_PREFIX + planet.getDisplayName();
+        return KEY_PREFIX + planet.name();
     }
 }
